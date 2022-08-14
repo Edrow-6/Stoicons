@@ -6,10 +6,11 @@
     "icons/**"
   ],
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "npm run optimize-icons && npm run build-react",
     "build-react": "node ./scripts/build.js react",
-    "optimize-icons": "rimraf ./icons ./optimized/icons && svgo --config=svgo.config.js -f ./src/icons -r -o ./optimized/icons --pretty --indent=2 && npm run copy-icons",
-    "copy-icons": "@powershell copy -R ./optimized/icons ./icons"
+    "optimize-icons": "rimraf ./icons ./optimized/icons && svgo --config=svgo.config.js -f ./src/icons -r -o ./optimized/icons --pretty --indent=2",
+    "copy-icons": "@powershell copy -R ./optimized/icons ./icons && cp -R ./optimized/icons ./icons"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
