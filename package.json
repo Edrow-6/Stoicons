@@ -1,0 +1,23 @@
+{
+  "name": "stoicons",
+  "version": "1.0.0",
+  "license": "MIT",
+  "files": [
+    "icons/**"
+  ],
+  "scripts": {
+    "build": "npm run optimize-icons && npm run build-react",
+    "build-react": "node ./scripts/build.js react",
+    "optimize-icons": "rimraf ./icons ./optimized/icons && svgo --config=svgo.config.js -f ./src/icons -r -o ./optimized/icons --pretty --indent=2 && npm run copy-icons",
+    "copy-icons": "@powershell copy -R ./optimized/icons ./icons"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@svgr/core": "^5.5.0",
+    "@vue/compiler-dom": "^3.0.5",
+    "camelcase": "^6.0.0",
+    "rimraf": "^3.0.2",
+    "svgo": "^2.8.0",
+    "@babel/plugin-transform-react-jsx": "^7.18.10"
+  }
+}

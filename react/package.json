@@ -1,0 +1,21 @@
+{
+  "name": "@stoicons/react",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/edrow-6/stoicons",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edrow-6/stoicons.git"
+  },
+  "files": [
+    "icons/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">= 18"
+  }
+}
