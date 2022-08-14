@@ -119,6 +119,31 @@ async function main(package) {
   await Promise.all([rimraf(`./${package}/icons/*`)])
 
   await Promise.all([
+    buildIcons(package, 'alerts', 'esm'),
+    buildIcons(package, 'alerts', 'cjs'),
+    ensureWriteJson(`./${package}/icons/alerts/package.json`, cjsPackageJson),
+    ensureWriteJson(`./${package}/icons/alerts/esm/package.json`, esmPackageJson),
+
+    buildIcons(package, 'arrows', 'esm'),
+    buildIcons(package, 'arrows', 'cjs'),
+    ensureWriteJson(`./${package}/icons/arrows/package.json`, cjsPackageJson),
+    ensureWriteJson(`./${package}/icons/arrows/esm/package.json`, esmPackageJson),
+
+    buildIcons(package, 'charts', 'esm'),
+    buildIcons(package, 'charts', 'cjs'),
+    ensureWriteJson(`./${package}/icons/charts/package.json`, cjsPackageJson),
+    ensureWriteJson(`./${package}/icons/charts/esm/package.json`, esmPackageJson),
+
+    buildIcons(package, 'communication', 'esm'),
+    buildIcons(package, 'communication', 'cjs'),
+    ensureWriteJson(`./${package}/icons/communication/package.json`, cjsPackageJson),
+    ensureWriteJson(`./${package}/icons/communication/esm/package.json`, esmPackageJson),
+
+    buildIcons(package, 'development', 'esm'),
+    buildIcons(package, 'development', 'cjs'),
+    ensureWriteJson(`./${package}/icons/development/package.json`, cjsPackageJson),
+    ensureWriteJson(`./${package}/icons/development/esm/package.json`, esmPackageJson),
+
     buildIcons(package, 'editor', 'esm'),
     buildIcons(package, 'editor', 'cjs'),
     ensureWriteJson(`./${package}/icons/editor/package.json`, cjsPackageJson),
