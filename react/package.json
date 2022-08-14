@@ -1,8 +1,8 @@
 {
   "name": "@stolaris/icons",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
-  "description": "Stolaris icons script",
+  "description": "Stolaris icons library",
   "keywords": [],
   "homepage": "https://github.com/edrow-6/stoicons",
   "repository": {
