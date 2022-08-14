@@ -10,12 +10,12 @@
     "url": "https://github.com/edrow-6/stoicons.git"
   },
   "files": [
-    "icons/*"
+    "**/*"
   ],
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "react": ">= 16"
+    "react": ">= 18"
   }
 }
