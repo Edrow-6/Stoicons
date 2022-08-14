@@ -83,7 +83,7 @@ async function ensureWriteJson(file, json) {
 }
 
 async function buildIcons(package, style, format) {
-  let outDir = `./${package}/icons/${style}`
+  let outDir = `./${package}/${style}`
   if (format === 'esm') {
     outDir += '/esm'
   }

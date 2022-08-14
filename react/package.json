@@ -1,8 +1,8 @@
 {
-  "name": "@stoicons/react",
-  "version": "1.0.0",
+  "name": "@stolaris/icons",
+  "version": "1.0.2",
   "license": "MIT",
-  "description": "",
+  "description": "Stolaris icons script",
   "keywords": [],
   "homepage": "https://github.com/edrow-6/stoicons",
   "repository": {
@@ -10,12 +10,12 @@
     "url": "https://github.com/edrow-6/stoicons.git"
   },
   "files": [
-    "icons/**"
+    "icons/*"
   ],
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "react": ">= 18"
+    "react": ">= 16"
   }
 }
