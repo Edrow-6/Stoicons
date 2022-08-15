@@ -1,8 +1,8 @@
 {
-  "name": "@stolaris/icons",
-  "version": "1.0.3",
+  "name": "@stoicons/react",
+  "version": "1.0.5",
   "license": "MIT",
-  "description": "Stolaris icons library",
+  "description": "Stolaris react icons library",
   "keywords": [],
   "homepage": "https://github.com/edrow-6/stoicons",
   "repository": {
@@ -10,7 +10,7 @@
     "url": "https://github.com/edrow-6/stoicons.git"
   },
   "files": [
-    "**/*"
+    "line"
   ],
   "publishConfig": {
     "access": "public"

@@ -1,16 +1,16 @@
 {
   "name": "stoicons",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "license": "MIT",
   "files": [
-    "icons/**"
+    "line/"
   ],
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "npm run optimize-icons && npm run build-react",
+    "build": "npm run optimize-line && npm run build-react",
     "build-react": "node ./scripts/build.js react",
-    "optimize-icons": "rimraf ./icons ./optimized/icons && svgo --config=svgo.config.js -f ./src/icons -r -o ./optimized/icons --pretty --indent=2",
-    "copy-icons": "@powershell copy -R ./optimized/icons ./icons && cp -R ./optimized/icons ./icons"
+    "optimize-line": "rimraf ./line ./optimized/line && svgo --config=svgo.config.js -f ./src/line -r -o ./optimized/line --pretty --indent=2",
+    "copy-line": "@powershell copy -R ./optimized/line ./line && cp -R ./optimized/line ./line"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

@@ -26,34 +26,11 @@ let transform = {
   }
 }
 
-function getAllFiles(dirPath, arrayyOfFiles) {
-  let files = fs.readdirSync(dirPath)
-  var arrayOfFiles = arrayOfFiles || []
-
-  files.forEach((file) => {
-    if (fs.statSync(dirPath + '/' + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + '/' + file, arrayOfFiles)
-      //console.log(file)
-    } else {
-      arrayOfFiles.push(path.join(dirPath, '/', file))
-      //console.log(arrayOfFiles)
-    }
-  })
-
-  return arrayOfFiles
-}
-
-function getAllPaths(basePath) {
-  return fs.readdirSync(basePath).filter((file) => {
-    return fs.statSync(basePath + '/' + file).isDirectory()
-  })
-}
-
 async function getIcons(style) {
-  let files = await fsp.readdir(`./optimized/icons/${style}`)
+  let files = await fsp.readdir(`./optimized/${style}`)
   return Promise.all(
     files.map(async (file) => ({
-      svg: await fsp.readFile(`./optimized/icons/${style}/${file}`, 'utf8'),
+      svg: await fsp.readFile(`./optimized/${style}/${file}`, 'utf8'),
       componentName: `${camelcase(file.replace(/\.svg$/, ''), {
         pascalCase: true,
       })}Icon`,
@@ -116,103 +93,13 @@ async function main(package) {
 
   console.log(`Building ${package} package...`)
 
-  await Promise.all([rimraf(`./${package}/icons/*`)])
+  await Promise.all([rimraf(`./${package}/line/*`)])
 
   await Promise.all([
-    buildIcons(package, 'alerts', 'esm'),
-    buildIcons(package, 'alerts', 'cjs'),
-    ensureWriteJson(`./${package}/icons/alerts/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/alerts/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'arrows', 'esm'),
-    buildIcons(package, 'arrows', 'cjs'),
-    ensureWriteJson(`./${package}/icons/arrows/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/arrows/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'charts', 'esm'),
-    buildIcons(package, 'charts', 'cjs'),
-    ensureWriteJson(`./${package}/icons/charts/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/charts/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'communication', 'esm'),
-    buildIcons(package, 'communication', 'cjs'),
-    ensureWriteJson(`./${package}/icons/communication/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/communication/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'development', 'esm'),
-    buildIcons(package, 'development', 'cjs'),
-    ensureWriteJson(`./${package}/icons/development/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/development/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'editor', 'esm'),
-    buildIcons(package, 'editor', 'cjs'),
-    ensureWriteJson(`./${package}/icons/editor/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/editor/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'education', 'esm'),
-    buildIcons(package, 'education', 'cjs'),
-    ensureWriteJson(`./${package}/icons/education/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/education/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'files', 'esm'),
-    buildIcons(package, 'files', 'cjs'),
-    ensureWriteJson(`./${package}/icons/files/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/files/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'finance', 'esm'),
-    buildIcons(package, 'finance', 'cjs'),
-    ensureWriteJson(`./${package}/icons/finance/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/finance/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'general', 'esm'),
-    buildIcons(package, 'general', 'cjs'),
-    ensureWriteJson(`./${package}/icons/general/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/general/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'images', 'esm'),
-    buildIcons(package, 'images', 'cjs'),
-    ensureWriteJson(`./${package}/icons/images/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/images/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'layout', 'esm'),
-    buildIcons(package, 'layout', 'cjs'),
-    ensureWriteJson(`./${package}/icons/layout/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/layout/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'maps', 'esm'),
-    buildIcons(package, 'maps', 'cjs'),
-    ensureWriteJson(`./${package}/icons/maps/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/maps/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'media', 'esm'),
-    buildIcons(package, 'media', 'cjs'),
-    ensureWriteJson(`./${package}/icons/media/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/media/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'security', 'esm'),
-    buildIcons(package, 'security', 'cjs'),
-    ensureWriteJson(`./${package}/icons/security/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/security/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'shapes', 'esm'),
-    buildIcons(package, 'shapes', 'cjs'),
-    ensureWriteJson(`./${package}/icons/shapes/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/shapes/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'time', 'esm'),
-    buildIcons(package, 'time', 'cjs'),
-    ensureWriteJson(`./${package}/icons/time/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/time/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'users', 'esm'),
-    buildIcons(package, 'users', 'cjs'),
-    ensureWriteJson(`./${package}/icons/users/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/users/esm/package.json`, esmPackageJson),
-
-    buildIcons(package, 'weather', 'esm'),
-    buildIcons(package, 'weather', 'cjs'),
-    ensureWriteJson(`./${package}/icons/weather/package.json`, cjsPackageJson),
-    ensureWriteJson(`./${package}/icons/weather/esm/package.json`, esmPackageJson),
+    buildIcons(package, 'line', 'esm'),
+    buildIcons(package, 'line', 'cjs'),
+    ensureWriteJson(`./${package}/line/package.json`, cjsPackageJson),
+    ensureWriteJson(`./${package}/line/esm/package.json`, esmPackageJson),
   ])
 
   return console.log(`Finished building ${package} package.`)
